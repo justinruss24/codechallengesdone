@@ -66,3 +66,52 @@ def circleOfNumbers(n, firstNumber):
         return 0
     else:
         return (n/2) + firstNumber
+
+
+# // check palindrome
+# // Given the string, check if it is a palindrome.
+
+
+def checkPalindrome(inputString):
+    rev = ''.join(reversed(inputString))
+
+    if inputString == rev:
+        return True
+    else:
+        return False
+
+
+# Adjacent Elements Product
+# Given an array of integers, find the pair of adjacent elements that has the largest product and return that product.
+def adjacentElementsProduct(inputArray):
+    largest = []
+
+    for i in range(0, len(inputArray)-1):
+        holder = inputArray[i] * inputArray[i+1]
+        largest.append(holder)
+    return max(largest)
+
+# shape area
+# Below we will define an n-interesting polygon. Your task is to find the area of a polygon for a given n.
+# A 1-interesting polygon is just a square with a side of length 1. An n-interesting polygon is obtained by taking the n - 1-interesting polygon and appending 1-interesting polygons to its rim, side by side. You can see the 1-, 2-, 3 - and 4-interesting polygons in the picture below.
+
+
+def shapeArea(n):
+    if n == 1:
+        return 1
+    else:
+        return n**2 + (n-1)**2
+
+
+# Make array consecutive 2
+# Ratiorg got statues of different sizes as a present from CodeMaster for his birthday, each statue having an non-negative integer size. Since he likes to make things perfect, he wants to arrange them from smallest to largest so that each statue will be bigger than the previous one exactly by 1. He may need some additional statues to be able to accomplish that. Help him figure out the minimum number of additional statues needed.
+
+def makeArrayConsecutive2(statues):
+    count = 0
+    minVal = min(statues)
+    maxVal = max(statues)
+
+    for i in range(minVal, maxVal + 1):
+        if i not in statues:
+            count += 1
+    return count
