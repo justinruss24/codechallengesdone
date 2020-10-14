@@ -35,4 +35,34 @@ def seatsInTheater(nCols, nRows, col, row):
 
 # Max Multiple
 
+# Given a divisor and a bound, find the largest integer N such that:
+# N is divisible by divisor.
+# N is less than or equal to bound.
+# N is greater than 0.
+# It is guaranteed that such a number exists.
+
+def maxMultiple(divisor, bound):
+    options = []
+
+    for i in range(0, bound+1):
+        if i % divisor == 0:
+            options.append(i)
+
+    return max(options)
+
 # Circle of Numbers
+
+# Consider integer numbers from 0 to n - 1 written down along the circle in such a way that the distance between any two neighboring numbers is equal (note that 0 and n - 1 are neighboring, too).
+# Given n and firstNumber, find the number which is written in the radially opposite position to firstNumber.
+
+
+def circleOfNumbers(n, firstNumber):
+
+    # radialOpp = (n/2) + firstNumber
+
+    if firstNumber > (n/2):
+        return firstNumber - (n/2)
+    elif firstNumber == (n/2):
+        return 0
+    else:
+        return (n/2) + firstNumber
