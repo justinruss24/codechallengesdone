@@ -115,3 +115,109 @@ def makeArrayConsecutive2(statues):
         if i not in statues:
             count += 1
     return count
+
+# Longest Palindrome
+
+class Solution1:
+    def longestPalindrome(self, s: str) -> int:
+        # count the number of times each letter appears
+        ltr_count = {}
+        #iterate through string counting letters
+        for ltr in s:
+            #if we haven't seen the letter before
+            if ltr not in ltr_count:
+                ltr_count[ltr] = 1
+            #if we have...
+            else:
+                ltr_count[ltr] += 1
+        # initialize var for total letters we can add to palindrome
+        max_length = 0
+        # check count for each letter
+        for count in ltr_count.values():
+            # if letter count is even, we can add all of them
+            # if it's the first odd count, we can still add all to allow for an extra middle letter
+            if count % 2 == 0 or max_length % 2 == 0:
+                max_length += count
+            # if it's odd and we've already added a middle letter, we can add all but one
+            else:
+                max_length += count - 1
+        return max_length
+
+# Find the Town Judge
+
+
+class Solution2:
+    def findJudge(self, N: int, trust: List[List[int]]) -> int:
+        if N == 1:
+            # Quick response for small case
+            return 1
+
+        # first cell is dummy, just for the convenience of indexing start from 1 to N
+        trust_score = [0 for _ in range(N+1)]
+
+        for p1, p2 in trust:
+
+            # decrease one point from p1 when p1 trusts other people
+            trust_score[p1] -= 1
+
+            # increase one point to p2 when p2 is trusted by others
+            trust_score[p2] += 1
+
+        for person in range(1, N+1):
+
+            # town judge will be trusted by other N-1 people, and town judge trust nobody.
+            if trust_score[person] == N-1:
+                return person
+
+        return -1
+
+# Contains Duplicates
+
+class Solution3:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        return True if len(set(nums)) < len(nums) else False
+
+
+# Remove Kth From End of LL
+
+# Write a function that receives as input the head node of a linked list and an integer k. Your function should remove the kth node from the end of the linked list and return the head node of the updated list.
+
+# Singly-linked lists are already defined with this interface:
+# class ListNode(object):
+#   def __init__(self, x):
+#     self.value = x
+#     self.next = None
+#
+def remove_kth_from_end(head, k):
+    p1 = head
+    p2 = head
+    length = 1
+
+    if k == 0:
+        return head
+
+    while p1.next:
+        length += 1
+        p1 = p1.next
+        if length > k + 1:
+            p2 = p2.next
+    if length == k:
+        return head.next
+    else:
+        p2.next = p2.next.next
+        return head
+
+# First Not Repeating Character
+
+# Given a string s consisting of small English letters, find and return the first instance of a non-repeating character in it. If there is no such character, return '_'.
+
+
+def first_not_repeating_character(s):
+    visited = set()
+
+    for i in range(len(s)):
+        if s[i] not in visited:
+            visited.add(s[i])
+            if s.count(s[i]) == 1:
+                return s[i]
+    return "_"
