@@ -269,3 +269,16 @@ def traverseTree(t):
             if traversed.right:
                 q.append(traversed.right)
     return finished
+
+# Count Bits
+# Implement a function that, given an integer n, uses a specific method on it and returns the number of bits in its binary representation.
+
+
+def countBits(n):
+    # return n-n+len(bin(n))-2+int()
+
+    binaryN = bin(n).replace("0b", "")
+    print(binaryN)
+    stringBN = str(binaryN)
+
+    return len(stringBN)
